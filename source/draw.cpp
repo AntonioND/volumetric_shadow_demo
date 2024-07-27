@@ -130,7 +130,7 @@ void draw(void)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspectivef32(80, (unsigned int)((256.0 / 192.0) * (1 << 12)), 16, (64 * 256));
+	gluPerspectivef32(64 * 80, floattof32(256.0 / 192.0), floattof32(0.1), floattof32(64));
 
 	// The next one has to be called while in projection matrix mode!
 	g_scissor.save();
