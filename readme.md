@@ -98,7 +98,7 @@ That, of course, should never happen! The demo wasn't designed to destroy
 anything. :^)
 
 If you decide to use some lines from this demo, I hereby nicely ask you to include
-a little note containing the URL of my web site (www.robs-abesment.de) somewhere
+a little note containing the URL of my web site (www.robs-basement.de) somewhere
 appropriate in your program or its documentation. Thank you!
 
 The included example data are my own humble creations - please don't use them in
