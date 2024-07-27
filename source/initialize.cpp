@@ -10,7 +10,7 @@
 #include <nds.h>
 #include <nds/arm9/console.h>
 
-#include <fat.h>
+#include <filesystem.h>
 
 #include <stdio.h>
 #include <string.h>
@@ -220,11 +220,11 @@ void initialize(void)
 
 
 	// initialize the file system
-	if(!fatInitDefault())
+	if(!nitroFSInit(NULL))
 	{
 		// "halt" on error and display a message!
 		consoleDemoInit();
-		iprintf("FAT ERROR!\n");
+		printf("NITROFS ERROR!\n");
 		_DEBUG_HALT
 	}
 
