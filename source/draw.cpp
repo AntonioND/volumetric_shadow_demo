@@ -8,6 +8,7 @@
 
 
 #include <nds.h>
+#include <nds/registers_alt.h>
 #include <nds/arm9/console.h>
 
 #include <stdio.h>
@@ -36,16 +37,17 @@ extern CScissorBox g_scissor;
 static const uint16 c_always_glEnabled = GL_TOON_HIGHLIGHT | GL_ANTIALIAS | GL_BLEND | GL_COLOR_UNDERFLOW | GL_POLY_OVERFLOW | GL_FOG | GL_FOG_SHIFT(9);
 
 
+#if 0
 static inline void glFogColor(uint8 red, uint8 green, uint8 blue, uint8 alpha)
 {
 	GFX_FOG_COLOR = ((alpha & 31) << 16) | ((blue & 31) << 10) | ((green & 31) << 5) | (red & 31);
 }
+#endif
 
 static inline void glFogDepth(uint16 depth)
 {
 	GFX_FOG_OFFSET = depth;
 }
-
 
 void updateFogTable(uint32 mass)
 {
@@ -67,8 +69,8 @@ void updateFogTable(uint32 mass)
 
 static inline void drawScene(void)
 {
-	glRotatef32i(g_view.angleX, (1 << 12), 0, 0);
-	glRotatef32i(LUT_SIZE - g_view.angleY, 0, (1 << 12), 0);
+	glRotatef32i(64 * g_view.angleX, (1 << 12), 0, 0);
+	glRotatef32i(64 * -g_view.angleY, 0, (1 << 12), 0);
 	glTranslate3f32(-g_view.x, g_view.y, -g_view.z);
 
 	/// @note remember to set lights AFTER the view has been rotated!
@@ -137,7 +139,7 @@ void draw(void)
 	REG_DISPCAPCNT =
 		DCAP_ENABLE |
 		DCAP_MODE(g_nCapturemode << 1) |	// Capture Source    (0=Source A, 1=Source B, 2/3=Sources A+B blended)
-		DCAP_DST(0) |						// VRAM Write Offset (0=00000h, 0=08000h, 0=10000h, 0=18000h)
+		DCAP_OFFSET(0) |					// VRAM Write Offset (0=00000h, 0=08000h, 0=10000h, 0=18000h)
 		DCAP_SRC(1) |						// Source A          (0=Graphics Screen BG+3D+OBJ, 1=3D Screen)
 		DCAP_SRC(0 << 1) |					// Source B          (0=VRAM, 1=Main Memory Display FIFO)
 		DCAP_SIZE(3) |						// Capture Size      (0=128x128, 1=256x64, 2=256x128, 3=256x192 dots)
@@ -158,16 +160,16 @@ void draw(void)
 //		switch(g_nFramesDrawn % 4)
 //		{
 //			case 0:
-//				glRotatef32i((1 << 0), (1 << 6), 0, 0);
+//				glRotatef32i(64 * (1 << 0), (1 << 6), 0, 0);
 //				break;
 //			case 1:
-//				glRotatef32i((1 << 0), 0, (1 << 6), 0);
+//				glRotatef32i(64 * (1 << 0), 0, (1 << 6), 0);
 //				break;
 //			case 2:
-//				glRotatef32i(-(1 << 0), (1 << 6), 0, 0);
+//				glRotatef32i(64 * -(1 << 0), (1 << 6), 0, 0);
 //				break;
 //			case 3:
-//				glRotatef32i(-(1 << 0), 0, (1 << 6), 0);
+//				glRotatef32i(64 * -(1 << 0), 0, (1 << 6), 0);
 //				break;
 //		}
 //	}

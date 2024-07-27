@@ -8,6 +8,7 @@
 
 
 #include <nds.h>
+#include <nds/registers_alt.h>
 
 #include <stdio.h>
 
@@ -70,14 +71,14 @@ void input(void)
 	{
 		if(keysHeld() & KEY_LEFT)
 		{
-			g_view.x -= SIN[(g_view.angleY + 128) & LUT_MASK] >> 7;
-			g_view.z += COS[(g_view.angleY + 128) & LUT_MASK] >> 7;
+			g_view.x -= sinLerp(64 * (g_view.angleY + 128)) >> 7;
+			g_view.z += cosLerp(64 * (g_view.angleY + 128)) >> 7;
 		}
 
 		if(keysHeld() & KEY_RIGHT)
 		{
-			g_view.x += SIN[(g_view.angleY + 128) & LUT_MASK] >> 7;
-			g_view.z -= COS[(g_view.angleY + 128) & LUT_MASK] >> 7;
+			g_view.x += sinLerp(64 * (g_view.angleY + 128)) >> 7;
+			g_view.z -= cosLerp(64 * (g_view.angleY + 128)) >> 7;
 		}
 
 		if(keysHeld() & KEY_UP)
@@ -116,26 +117,26 @@ void input(void)
 	{
 		if(keysHeld() & KEY_LEFT)
 		{
-			g_view.x -= SIN[(g_view.angleY + 128) & LUT_MASK] >> 7;
-			g_view.z += COS[(g_view.angleY + 128) & LUT_MASK] >> 7;
+			g_view.x -= sinLerp(64 * (g_view.angleY + 128)) >> 7;
+			g_view.z += cosLerp(64 * (g_view.angleY + 128)) >> 7;
 		}
 
 		if(keysHeld() & KEY_RIGHT)
 		{
-			g_view.x += SIN[(g_view.angleY + 128) & LUT_MASK] >> 7;
-			g_view.z -= COS[(g_view.angleY + 128) & LUT_MASK] >> 7;
+			g_view.x += sinLerp(64 * (g_view.angleY + 128)) >> 7;
+			g_view.z -= cosLerp(64 * (g_view.angleY + 128)) >> 7;
 		}
 
 		if(keysHeld() & KEY_UP)
 		{
-			g_view.x += SIN[g_view.angleY & LUT_MASK] >> 7;
-			g_view.z -= COS[g_view.angleY & LUT_MASK] >> 7;
+			g_view.x += sinLerp(64 * g_view.angleY) >> 7;
+			g_view.z -= cosLerp(64 * g_view.angleY) >> 7;
 		}
 
 		if(keysHeld() & KEY_DOWN)
 		{
- 			g_view.x -= SIN[g_view.angleY & LUT_MASK] >> 7;
-			g_view.z += COS[g_view.angleY & LUT_MASK] >> 7;
+			g_view.x -= sinLerp(64 * g_view.angleY) >> 7;
+			g_view.z += cosLerp(64 * g_view.angleY) >> 7;
 		}
 	}
 

@@ -8,6 +8,7 @@
 
 
 #include <nds.h>
+#include <nds/registers_alt.h>
 #include <nds/arm9/console.h>
 
 #include <filesystem.h>
@@ -39,6 +40,7 @@ uint32 loadTexture(const char *filename, int &textureID);
 uint32 loadMeshChar(CMesh &mesh, const char *filename, float scale = 0.0156f, CRGBA color = c_white);
 uint32 displayPBI(const char *filename, uint32 *screenBlock, uint8 loadPalette = 0);
 
+static ConsoleFont customFont;
 
 // The following functions were stripped from initialize(), to improve modularity and readability.
 
@@ -103,7 +105,16 @@ static uint32 loadFont(void)
 	// load the character set
 	fread(pBuffer, sizeof(uint8), imgSize, pFile);
 
-	consoleInit((uint16 *)pBuffer, (uint16 *)CHAR_BASE_BLOCK_SUB(1), 95, 32, (uint16 *)SCREEN_BASE_BLOCK_SUB(0), 0, 8);
+	PrintConsole *console = consoleInit(NULL, 0, BgType_Text8bpp, BgSize_T_256x256, 0, 1, false, true);
+
+	customFont.gfx = (u16*)pBuffer;
+	customFont.pal = NULL;
+	customFont.numColors = palSize;
+	customFont.bpp = 8;
+	customFont.asciiOffset = 32;
+	customFont.numChars = 95;
+
+	consoleSetFont(console, &customFont);
 
 	consoleClear();
 	printf("\x1b[0;0H");
@@ -174,12 +185,8 @@ static uint32 loadGeometry(void)
 void initialize(void)
 {
 	// Turn on everything and route the main engine to the top screen.
-	powerON(POWER_ALL);
+	powerOn(POWER_ALL);
 	lcdMainOnTop();
-
-	// IRQ basic setup
-	irqInit();
-	irqSet(IRQ_VBLANK, 0);
 
 	// assigne video ram banks
 	vramSetBankA(VRAM_A_TEXTURE_SLOT0);
@@ -205,7 +212,7 @@ void initialize(void)
 	BG3_CY = 0;			//translation y
 
 	videoSetModeSub(MODE_5_2D | DISPLAY_BG0_ACTIVE | DISPLAY_BG3_ACTIVE);
-	SUB_BG0_CR = BG_32x32 | BG_256_COLOR | BG_MAP_BASE(0) | BG_TILE_BASE(1) | BG_PRIORITY(0);
+	SUB_BG0_CR = BG_32x32 | BG_COLOR_256 | BG_MAP_BASE(0) | BG_TILE_BASE(1) | BG_PRIORITY(0);
 	SUB_BG3_CR = BG_BMP8_256x256 | BG_BMP_BASE(2) | BG_PRIORITY(3);
 
 	SUB_BG3_XDX = 1 << 8;	//scale x

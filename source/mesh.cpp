@@ -29,9 +29,9 @@ void CMesh::draw(uint8 shift, ERenderMode mode)
 {
 	glPushMatrix();
 	glTranslate3f32(x, y, z);
-	glRotatef32i(ax, (1 << 12), 0, 0);
-	glRotatef32i(ay, 0, (1 << 12), 0);
-	glRotatef32i(az, 0, 0, (1 << 12));
+	glRotatef32i(64 * ax, (1 << 12), 0, 0);
+	glRotatef32i(64 * ay, 0, (1 << 12), 0);
+	glRotatef32i(64 * az, 0, 0, (1 << 12));
 
 	if(g_bTextures)
 		glBindTexture(GL_TEXTURE_2D, texID);
