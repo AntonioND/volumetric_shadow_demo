@@ -33,7 +33,7 @@
 /// This will "trap" execution in an endless loop - use when debugging and no debugger is at hand (requires recompilation for every change) or when needed otherwise (e.g. resource not found.)
 #define _DEBUG_HALT		while(true) { swiWaitForVBlank(); }
 
-#define _MAX_PATH_LENGTH	32
+#define _MAX_PATH_LENGTH	512
 
 
 extern const int c_viewportDimensions[];
