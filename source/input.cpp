@@ -214,7 +214,7 @@ void input(void)
 
 	if(keysDown() & KEY_TOUCH)
 	{
-		g_lastTouch = touchReadXY();
+		touchRead(&g_lastTouch);
 
 		// let's use some fixed point magic to improve touch accuracy
 		g_lastTouch.px <<= 7;
@@ -223,7 +223,7 @@ void input(void)
 
 	if(keysHeld() & KEY_TOUCH)
 	{
-		g_currentTouch = touchReadXY();
+		touchRead(&g_currentTouch);
 
 		// let's use some fixed point magic to improve touch smoothing accuracy
 		g_currentTouch.px <<= 7;

@@ -67,7 +67,7 @@ uint32 loadMeshChar(CMesh &mesh, const char *filename, float scale, CRGBA color)
 	//
 
 	fgets(line, 256, pFile);
-	sscanf(line, "%d %d", &nv, &nt);
+	sscanf(line, "%lu %lu", &nv, &nt);
 
 	ppVData = new float*[nv];
 
@@ -118,7 +118,7 @@ uint32 loadMeshChar(CMesh &mesh, const char *filename, float scale, CRGBA color)
 	for(i = 0; i < mesh.nTris; i++)
 	{
 		fgets(line, 256, pFile);
-		sscanf(line, "%d %d %d %f %f %f %f %f %f %f %f %f",
+		sscanf(line, "%ld %ld %ld %f %f %f %f %f %f %f %f %f",
 			&iTemp[0], &iTemp[1], &iTemp[2],
 			&fTemp[0], &fTemp[1], &fTemp[2],
 			&fTemp[3], &fTemp[4],
