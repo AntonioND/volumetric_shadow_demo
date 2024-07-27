@@ -45,7 +45,7 @@ uint32 loadMeshChar(CMesh &mesh, const char *filename, float scale, CRGBA color)
 		if(pFile == NULL)
 		{
 			// ERROR - file not found!
-			iprintf("\nloadMeshChar() failed: File not found!\n");
+			printf("\nloadMeshChar() failed: File not found!\n");
 			// leave
 			return RSC_ERROR_FNF;
 		}

@@ -176,8 +176,8 @@ void draw(void)
 
 	g_nFramesDrawn++;
 
-	iprintf("\x1b[0;5H    \x1b[0;5H%i\n", g_nFPS);
-	iprintf("\x1b[1;5H    \x1b[1;5H%i\n", GFX_VERTEX_RAM_USAGE);
-	iprintf("\x1b[2;5H    \x1b[2;5H%i\n", GFX_POLYGON_RAM_USAGE);
-	iprintf("\x1b[3;5H    \x1b[3;5H%i\n", FIX_GFX_RDLINES_COUNT);
+	printf("\x1b[0;5H    \x1b[0;5H%i\n", g_nFPS);
+	printf("\x1b[1;5H    \x1b[1;5H%i\n", GFX_VERTEX_RAM_USAGE);
+	printf("\x1b[2;5H    \x1b[2;5H%i\n", GFX_POLYGON_RAM_USAGE);
+	printf("\x1b[3;5H    \x1b[3;5H%i\n", FIX_GFX_RDLINES_COUNT);
 }

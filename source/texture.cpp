@@ -58,8 +58,8 @@ uint32 loadTexture(const char *filename, int &textureID)
 	if(returnCode != RSC_SUCCESS)
 	{
 		// something went wrong
-//		iprintf("\x1b[2;2H");
-		iprintf("\nloadTexture() failed: Texture \"%s\" did not load!\n", filename);
+//		printf("\x1b[2;2H");
+		printf("\nloadTexture() failed: Texture \"%s\" did not load!\n", filename);
 		return returnCode;
 	}
 
@@ -71,8 +71,8 @@ uint32 loadTexture(const char *filename, int &textureID)
 
 	if(pTexData == NULL)
 	{
-		iprintf("\x1b[2;2H");
-		iprintf("\nloadTexture() failed: pTexData OOM!\n");
+		printf("\x1b[2;2H");
+		printf("\nloadTexture() failed: pTexData OOM!\n");
 		// clean up
 		delete [] pSData;
 		pSData = NULL;

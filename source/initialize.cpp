@@ -70,7 +70,7 @@ static uint32 loadFont(void)
 		{
 			// ERROR - file not found!
 			consoleDemoInit();
-			iprintf("\nCould not load font \"%s\"!\nPlease put all data in ROOT and try again.\n", path);
+			printf("\nCould not load font \"%s\"!\nPlease put all data in ROOT and try again.\n", path);
 			_DEBUG_HALT
 			// leave
 			return RSC_ERROR_FNF;
@@ -106,8 +106,8 @@ static uint32 loadFont(void)
 	consoleInit((uint16 *)pBuffer, (uint16 *)CHAR_BASE_BLOCK_SUB(1), 95, 32, (uint16 *)SCREEN_BASE_BLOCK_SUB(0), 0, 8);
 
 	consoleClear();
-	iprintf("\x1b[0;0H");
-	iprintf("Initializing system... ");
+	printf("\x1b[0;0H");
+	printf("Initializing system... ");
 
 	imgSize = width * height / (sizeof(uint32));
 
@@ -132,14 +132,14 @@ static uint32 loadTextures(void)
 {
 	uint32 returnCode = RSC_SUCCESS;
 
-	iprintf("\x1b[1;0H                                \x1b[1;2H");
-	iprintf("(textures");
+	printf("\x1b[1;0H                                \x1b[1;2H");
+	printf("(textures");
 
 	returnCode = loadTexture("doll256.tga", g_doll.texID);
-	iprintf(".");
+	printf(".");
 
 	returnCode |= loadTexture("test.tga", g_room.texID); // |= will result in anything but RSC_SUCCESS, if any error occurs
-	iprintf(".");
+	printf(".");
 
 	return returnCode;
 }
@@ -149,17 +149,17 @@ static uint32 loadGeometry(void)
 {
 	uint32 returnCode = RSC_SUCCESS;
 
-	iprintf("\x1b[1;0H                                \x1b[1;2H");
-	iprintf("(scene");
+	printf("\x1b[1;0H                                \x1b[1;2H");
+	printf("(scene");
 
 	returnCode = loadMeshChar(g_doll, "doll.char");
-	iprintf(".");
+	printf(".");
 
 	returnCode |= loadMeshChar(g_shadow, "shadow.char", 0.0156f, CRGBA(8, 2, 2));
-	iprintf(".");
+	printf(".");
 
 	returnCode |= loadMeshChar(g_room, "room.char");
-	iprintf(".");
+	printf(".");
 
 	return returnCode;
 }
@@ -251,30 +251,30 @@ void initialize(void)
 	glClearColor(0, 25, 25, 31);
 
 
-	iprintf("done.\n");
-	iprintf("\x1b[0;0H                                \x1b[0;0H");
-	iprintf("Loading data... \n");
+	printf("done.\n");
+	printf("\x1b[0;0H                                \x1b[0;0H");
+	printf("Loading data... \n");
 
 	if(loadTextures() != RSC_SUCCESS)
 	{
 		_DEBUG_HALT
 	}
-	iprintf(")\n\x1b[1;0H                                \x1b[1;2H");
+	printf(")\n\x1b[1;0H                                \x1b[1;2H");
 
 	if(loadGeometry() != RSC_SUCCESS)
 	{
 		_DEBUG_HALT
 	}
-	iprintf(")\n\x1b[1;0H                                \x1b[1;2H");
+	printf(")\n\x1b[1;0H                                \x1b[1;2H");
 
-	iprintf("\x1b[0;16H");
-	iprintf("done.\n");
-	iprintf("\x1b[0;0H                                \x1b[0;0H");
-	iprintf("\x1b[0;18HVSD Ver. 1.6.0");
-	iprintf("\x1b[0;0HFPS:      ");
-	iprintf("\x1b[1;0HVRT:      ");	// How many vertices are already in the vertex list ram? (6144 entries)
-	iprintf("\x1b[2;0HPLY:      ");	// And what about the number of primitives? (2048 entries)
-	iprintf("\x1b[3;0HRBL:      ");	// What's the minimum of the 48 available render buffer lines, that were free in the last frame? (more = better, max 46!)
+	printf("\x1b[0;16H");
+	printf("done.\n");
+	printf("\x1b[0;0H                                \x1b[0;0H");
+	printf("\x1b[0;18HVSD Ver. 1.6.0");
+	printf("\x1b[0;0HFPS:      ");
+	printf("\x1b[1;0HVRT:      ");	// How many vertices are already in the vertex list ram? (6144 entries)
+	printf("\x1b[2;0HPLY:      ");	// And what about the number of primitives? (2048 entries)
+	printf("\x1b[3;0HRBL:      ");	// What's the minimum of the 48 available render buffer lines, that were free in the last frame? (more = better, max 46!)
 
 	// sub screen again
 	if(displayPBI("splash.pbi", ((uint32 *)BG_BMP_RAM_SUB(2))) != RSC_SUCCESS)

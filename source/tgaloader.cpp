@@ -103,7 +103,7 @@ uint32 loadTargaImage(const char *filename, uint32 &width, uint32 &height, uint8
 		if(pFile == NULL)
 		{
 			// ERROR - file not found!
-			iprintf("\nloadTargaImage() failed: File \"%s\"not found!\n", path);
+			printf("\nloadTargaImage() failed: File \"%s\"not found!\n", path);
 			// leave
 			return RSC_ERROR_FNF;
 		}
@@ -124,7 +124,7 @@ uint32 loadTargaImage(const char *filename, uint32 &width, uint32 &height, uint8
 		imageTypeCode = 0;
 		for(i = 0; i < 18; i++)
 			header[i] = 0;
-		iprintf("\nloadTargaImage() failed: Unsupported image type!\n");
+		printf("\nloadTargaImage() failed: Unsupported image type!\n");
 		// close the file
 		fclose(pFile);
 		pFile = NULL;
@@ -154,7 +154,7 @@ uint32 loadTargaImage(const char *filename, uint32 &width, uint32 &height, uint8
 		bitCount = 0;
 		bpp    = 0;
 		width  = height = 0;
-		iprintf("\nloadTargaImage() failed : Not power of two!\n");
+		printf("\nloadTargaImage() failed : Not power of two!\n");
 		// close the file
 		fclose(pFile);
 		pFile = NULL;
@@ -185,7 +185,7 @@ uint32 loadTargaImage(const char *filename, uint32 &width, uint32 &height, uint8
 		bpp    = 0;
 		width  = height = 0;
 		nImageSize = 0;
-		iprintf("\nloadTargaImage() failed: Out of memory! (pImage)\n");
+		printf("\nloadTargaImage() failed: Out of memory! (pImage)\n");
 		// close the file
 		fclose(pFile);
 		pFile = NULL;

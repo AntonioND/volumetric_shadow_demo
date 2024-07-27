@@ -50,7 +50,7 @@ uint32 displayPBI(const char *filename, uint32 *screenBlock, uint8 loadPalette)
 		if(pFile == NULL)
 		{
 			// ERROR - file not found!
-			iprintf("\ndisplayPBI() failed: File \"%s\" not found!\n", path);
+			printf("\ndisplayPBI() failed: File \"%s\" not found!\n", path);
 			// leave
 			return RSC_ERROR_FNF;
 		}

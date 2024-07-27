@@ -22,7 +22,7 @@
 
 const int c_viewportDimensions[] = {0, 0, 255, 191};
 
-const char *c_dataPath = "fat:/data/vsd_data/";
+const char *c_dataPath = "nitro:/data/vsd_data/";
 const uint8 c_dataPathLength = strlen(c_dataPath); // yes, this actually works!
 
 
