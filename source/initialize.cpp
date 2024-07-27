@@ -8,7 +8,6 @@
 
 
 #include <nds.h>
-#include <nds/registers_alt.h>
 #include <nds/arm9/console.h>
 
 #include <filesystem.h>
@@ -202,28 +201,28 @@ void initialize(void)
 
 	// set the video modes and backgrounds
 	videoSetMode(MODE_5_2D | DISPLAY_BG3_ACTIVE);
-	BG3_CR = BG_BMP8_256x256 | BG_BMP_BASE(0) | BG_PRIORITY(0);
+	REG_BG3CNT = BG_BMP8_256x256 | BG_BMP_BASE(0) | BG_PRIORITY(0);
 
-	BG3_XDX = 1 << 8;	//scale x
-	BG3_XDY = 0;		//rotation x
-	BG3_YDX = 0;		//rotation y
-	BG3_YDY = 1 << 8;	//scale y
-	BG3_CX = 0;			//translation x
-	BG3_CY = 0;			//translation y
+	REG_BG3PA = 1 << 8;	//scale x
+	REG_BG3PB = 0;		//rotation x
+	REG_BG3PC = 0;		//rotation y
+	REG_BG3PD = 1 << 8;	//scale y
+	REG_BG3X = 0;			//translation x
+	REG_BG3Y = 0;			//translation y
 
 	videoSetModeSub(MODE_5_2D | DISPLAY_BG0_ACTIVE | DISPLAY_BG3_ACTIVE);
-	SUB_BG0_CR = BG_32x32 | BG_COLOR_256 | BG_MAP_BASE(0) | BG_TILE_BASE(1) | BG_PRIORITY(0);
-	SUB_BG3_CR = BG_BMP8_256x256 | BG_BMP_BASE(2) | BG_PRIORITY(3);
+	REG_BG0CNT_SUB = BG_32x32 | BG_COLOR_256 | BG_MAP_BASE(0) | BG_TILE_BASE(1) | BG_PRIORITY(0);
+	REG_BG3CNT_SUB = BG_BMP8_256x256 | BG_BMP_BASE(2) | BG_PRIORITY(3);
 
-	SUB_BG3_XDX = 1 << 8;	//scale x
-	SUB_BG3_XDY = 0;		//rotation x
-	SUB_BG3_YDX = 0;		//rotation y
-	SUB_BG3_YDY = 1 << 8;	//scale y
-	SUB_BG3_CX = 0;			//translation x
-	SUB_BG3_CY = 128;		//translation y
+	REG_BG3PA_SUB = 1 << 8;	//scale x
+	REG_BG3PB_SUB = 0;		//rotation x
+	REG_BG3PC_SUB = 0;		//rotation y
+	REG_BG3PD_SUB = 1 << 8;	//scale y
+	REG_BG3X_SUB = 0;			//translation x
+	REG_BG3Y_SUB = 128;		//translation y
 
 	// set the display brightness
-	BRIGHTNESS = g_nBrightness;
+	REG_MASTER_BRIGHT = g_nBrightness;
 
 
 	// initialize the file system
@@ -321,8 +320,8 @@ void initialize(void)
 	/// @note The frame buffer mode is needed for capturing to work with only one VRAM bank!
 	// setup the main screen for 3D and single VRAM bank capturing (which all goes into VRAM bank D = FB3!)
 	videoSetMode(MODE_FB3 | ENABLE_3D);
-	BG0_CR = 0;
-	BG3_CR = 0;
+	REG_BG0CNT = 0;
+	REG_BG3CNT = 0;
 
 	irqSet(IRQ_VBLANK, onVBlank);
 }

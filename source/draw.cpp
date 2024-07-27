@@ -8,8 +8,6 @@
 
 
 #include <nds.h>
-#include <nds/registers_alt.h>
-#include <nds/arm9/console.h>
 
 #include <stdio.h>
 

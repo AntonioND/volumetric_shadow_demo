@@ -8,7 +8,6 @@
 
 
 #include <nds.h>
-#include <nds/registers_alt.h>
 
 #include <stdio.h>
 
@@ -56,15 +55,15 @@ void input(void)
 
 		if(g_nBrightness > 0)
 		{
-	       	BRIGHTNESS = g_nBrightness | BRIGHTNESS_INC;
+			REG_MASTER_BRIGHT = g_nBrightness | BRIGHTNESS_INC;
 		}
 		else if(g_nBrightness < 0)
 		{
-	       	BRIGHTNESS = -g_nBrightness | BRIGHTNESS_DEC;
+			REG_MASTER_BRIGHT = -g_nBrightness | BRIGHTNESS_DEC;
 		}
 		else
 		{
-	       	BRIGHTNESS = 0;
+			REG_MASTER_BRIGHT = 0;
 		}
 	}
 	else if(keysHeld() & KEY_L)
