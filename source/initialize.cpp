@@ -325,5 +325,4 @@ void initialize(void)
 	BG3_CR = 0;
 
 	irqSet(IRQ_VBLANK, onVBlank);
-	irqEnable(IRQ_VBLANK);
 }
