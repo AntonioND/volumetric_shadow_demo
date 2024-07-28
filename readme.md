@@ -8,9 +8,11 @@ First of all: Thank you for downloading the demo!
 
 The "Volumetric Shadow Demo" is an NDS graphics hardware technology demo, which
 is mainly targeted towards new NDS developers, who want to see how to activate
-and utilize some of the NDS' graphics hardware features.
+and utilize some of the NDS' graphics hardware features. Read the
+[tutorial](./volumetric-shadows-nds.tutorial.md) to understand how to achieve
+this effect in your own programs.
 
-It was originally built with devkitARM R23b, libnds 20071023 and libfat
+This demo was originally built with devkitARM R23b, libnds 20071023 and libfat
 20070127, using the `touch_look` example of libnds as base. Credit and thanks go
 out to their respective authors. Credit also goes to gabebear for his scissor
 pick matrix implementation.
@@ -97,7 +99,6 @@ The included example data are my own humble creations - please don't use them in
 any other way, only as intended to: example data for this demo.
 (I don't expect anyone to actually want to "borrow" them anyway.)
 
-
 As usual, neither have the program sources, nor have I been in any way associated
 with or connected to Nintendo at the time of initial creation and release of this
 demo.
@@ -111,7 +112,7 @@ of Nintendo.
 
 Happy programming!
 
-R.H.L. (a.k.a. silent_code at the gbadev.org forum)
+R.H.L. (a.k.a. silent\_code at the gbadev.org forum)
 by [www.robs-basement.de] 2007 - 2008
 
 Contact me via "vsd at 'my place' followed by a dot and a de" or
