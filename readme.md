@@ -1,4 +1,4 @@
-VOLUMETRIC SHADOW DEMO 1.7.0
+VOLUMETRIC SHADOW DEMO 1.7.1
 ============================
 
 INTRODUCTION
@@ -126,6 +126,9 @@ the minor version and Z is the revision number.
 
 Version 1.x.x
 -------------
+
+Revision 7.1:
+- Update format of documentation.
 
 Revision 7.0:
 - Migrated to BlocksDS.

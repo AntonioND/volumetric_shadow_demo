@@ -276,7 +276,7 @@ void initialize(void)
 	printf("\x1b[0;16H");
 	printf("done.\n");
 	printf("\x1b[0;0H                                \x1b[0;0H");
-	printf("\x1b[0;18HVSD Ver. 1.7.0");
+	printf("\x1b[0;18HVSD Ver. 1.7.1");
 	printf("\x1b[0;0HFPS:      ");
 	printf("\x1b[1;0HVRT:      ");	// How many vertices are already in the vertex list ram? (6144 entries)
 	printf("\x1b[2;0HPLY:      ");	// And what about the number of primitives? (2048 entries)
