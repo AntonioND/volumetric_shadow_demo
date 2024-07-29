@@ -211,7 +211,7 @@ void initialize(void)
 	REG_BG3Y = 0;			//translation y
 
 	videoSetModeSub(MODE_5_2D | DISPLAY_BG0_ACTIVE | DISPLAY_BG3_ACTIVE);
-	REG_BG0CNT_SUB = BG_32x32 | BG_COLOR_256 | BG_MAP_BASE(0) | BG_TILE_BASE(1) | BG_PRIORITY(0);
+	// Layer 0 is configured in consoleInit()
 	REG_BG3CNT_SUB = BG_BMP8_256x256 | BG_BMP_BASE(2) | BG_PRIORITY(3);
 
 	REG_BG3PA_SUB = 1 << 8;	//scale x
