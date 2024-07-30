@@ -1,7 +1,7 @@
-VOLUMETRIC SHADOW DEMO 1.7.1
+Volumetric Shadow Demo 1.7.1
 ============================
 
-INTRODUCTION
+Introduction
 ------------
 
 First of all: Thank you for downloading the demo!
@@ -27,11 +27,11 @@ Special greetings to tepples, simonjhall and Alphanoob!
 
 This version has been ported to BlocksDS by Antonio Niño Díaz.
 
-**IMPORTANT: EVERYBODY SHOULD PLEASE READ THE DISCLAIMER SECTION BELOW!**
+**Important: Everybody should please read the disclaimer section below!**
 
 ![Screenshot 1](screenshots/screenshot-1.png) ![Screenshot 2](screenshots/screenshot-2.png)
 
-FEATURES
+Features
 --------
 
 The demo shows, among other things, how the following can be done:
@@ -50,7 +50,7 @@ NOTE: To see how such shadows are rendered, read the mini-tutorial, which comes
 with the source release. Feel free to additionally read the source file
 comments, e.g. "tgaloader.cpp" includes some information about the .tga format.
 
-COMPATIBILITY
+Compatibility
 -------------
 
 In order to run this demo on hardware, load it with a loader that supports the
@@ -62,7 +62,7 @@ make it work. Your card's manufacturer can help you with how to accomplish that.
 
 This demo should also work in emulators thanks to using NitroFS.
 
-CONTROLS
+Controls
 --------
 
 Just as displayed during the demo itself:
@@ -80,7 +80,7 @@ Just as displayed during the demo itself:
 - r + l + up/down = change brightness
 - r + l + start = reset scene and brightness
 
-DISCLAIMER
+Disclaimer
 ----------
 
 Feel free to use the sources for whatever you like. I release them (as well as
@@ -118,8 +118,8 @@ by [www.robs-basement.de] 2007 - 2008
 Contact me via "vsd at 'my place' followed by a dot and a de" or
 alternativley via the gbadev.org forum.
 
-CHANGE LOG
-==========
+Changelog
+=========
 
 NOTE: The revison of version X.Y.Z is Y.Z, where X is the major version, Y is
 the minor version and Z is the revision number.

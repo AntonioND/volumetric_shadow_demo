@@ -1,9 +1,9 @@
-NDS VOLUMETRIC SHADOWS MINI TUTORIAL
+NDS volumetric shadows mini tutorial
 ====================================
 
 by R.H.L. (www.robs-basement.de) 2007 - 2008
 
-**IMPORTANT: PLEASE READ THE CONTENTS OF THE README FILE!**
+**Important: Please read the contents of the readme file!**
 
 NOTE: I use the term polygon as a synonym for "primitive", which on the NDS are
 triangles (-strips) and quads (-strips).
@@ -50,7 +50,7 @@ These are the three basic steps you need to follow to render volumetric shadows:
 Now you should have a volume shadow on screen. Repeat steps two and three for
 all other shadow geometry.
 
-ADDITIONAL NOTES
+Additional notes
 ----------------
 
 - If you're using hardware fogging, you also need to enable it in the second
@@ -74,5 +74,6 @@ ADDITIONAL NOTES
 - For an object to shadow itself, simply set the polygon ID for its shadow
   volume to something different than the normal geometry's polygon ID.
 
-- *ALWAYS* follow steps two and three for *EACH* shadow geometry seperately!
-  *DO NOT* draw all "masks" first and then all "shadows" - that's a *BAD* idea!
+- **Always** follow steps two and three for **each** shadow geometry seperately!
+  **Do not** draw all "masks" first and then all "shadows" - that's a **bad**
+  idea!
