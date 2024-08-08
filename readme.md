@@ -1,4 +1,4 @@
-Volumetric Shadow Demo 1.7.1
+Volumetric Shadow Demo 1.7.2
 ============================
 
 Introduction
@@ -126,6 +126,9 @@ the minor version and Z is the revision number.
 
 Version 1.x.x
 -------------
+
+Revision 7.2:
+- Fix code that initializes the custom font of the console.
 
 Revision 7.1:
 - Update format of documentation.
