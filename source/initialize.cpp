@@ -46,8 +46,9 @@ static ConsoleFont customFont;
 static uint32 loadFont(void)
 {
 	FILE *pFile = NULL;
-	uint8 *pBuffer = NULL;
-	uint32 palSize = 0, width = 0, height = 0, i = 0, imgSize = 0;
+	uint8 *palBuffer = NULL;
+	uint8 *gfxBuffer = NULL;
+	uint32 palSize = 0, width = 0, height = 0, imgSize = 0;
 	const char *filename = "font.pbi";
 
 	// load the .pbi font image manually (because it needs "special treatment") ->
@@ -90,29 +91,36 @@ static uint32 loadFont(void)
 
 	// allocate maximum needed amount of memory
 	// (this is a little trick, so you just need to allocate memory once per file)
-	pBuffer = new uint8[max((palSize * sizeof(uint16)), imgSize)];
+	palBuffer = new uint8[max((palSize * sizeof(uint16)), imgSize)];
 
-	if(pBuffer == NULL)
+	if(palBuffer == NULL)
 		return RSC_ERROR_OOM;
 
 	// load the palette
-	fread(pBuffer, sizeof(uint16), palSize, pFile);
+	fread(palBuffer, sizeof(uint16), palSize, pFile);
 
-	for(i = 0; i < palSize; i++)
-		BG_PALETTE_SUB[i] = ((uint16 *)pBuffer)[i];
+	// allocate space for graphics
+	gfxBuffer = new uint8[imgSize * sizeof(uint8)];
+	if(gfxBuffer == NULL)
+	{
+		delete [] palBuffer;
+		return RSC_ERROR_OOM;
+	}
 
 	// load the character set
-	fread(pBuffer, sizeof(uint8), imgSize, pFile);
+	fread(gfxBuffer, sizeof(uint8), imgSize, pFile);
 
-	PrintConsole *console = consoleInit(NULL, 0, BgType_Text8bpp, BgSize_T_256x256, 0, 1, false, true);
+	// setup the console, but don't load the font graphics yet
+	PrintConsole *console = consoleInit(NULL, 0, BgType_Text8bpp, BgSize_T_256x256, 0, 1, false, false);
 
-	customFont.gfx = (u16*)pBuffer;
-	customFont.pal = NULL;
+	customFont.gfx = gfxBuffer;
+	customFont.pal = palBuffer;
 	customFont.numColors = palSize;
 	customFont.bpp = 8;
 	customFont.asciiOffset = 32;
 	customFont.numChars = 95;
 
+	// Setup the console, but don't load the font graphics yet
 	consoleSetFont(console, &customFont);
 
 	consoleClear();
@@ -121,16 +129,9 @@ static uint32 loadFont(void)
 
 	imgSize = width * height / (sizeof(uint32));
 
-	for(i = 0; i < imgSize; i++)
-	{
-		((uint32 *)BG_TILE_RAM_SUB(1))[i] = ((uint32 *)pBuffer)[i];
-	}
-
 	// clean up
-	delete [] pBuffer;
-	pBuffer = NULL;
-
-	palSize = width = height = i = imgSize = 0;
+	delete [] gfxBuffer;
+	delete [] palBuffer;
 
 	fclose(pFile);
 	pFile = NULL;
